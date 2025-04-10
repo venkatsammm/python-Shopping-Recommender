@@ -28,13 +28,28 @@ It uses:
 ## 🛠️ Installation & Setup
 
 ## bash
-# Clone the repository
+ Clone the repository
 git clone https://github.com/yourusername/product-recommender-system.git
 cd product-recommender-system
 
-# Create and activate a virtual environment
+ Create and activate a virtual environment
 python -m venv venv
 source venv/bin/activate       # On Windows: venv\Scripts\activate
 
-# Install required packages
+Install required packages
 pip install -r requirements.txt
+
+
+✅ # Features
+
+🔍 Semantic Recommendations – Understands product meaning, not just keyword matches
+
+⚡ Fast & Efficient – Powered by cosine similarity and optimized embeddings
+
+🧑‍💻 Interactive UI – Built with Streamlit for easy browsing and searching
+
+🗃️ Database Integration – Easily scalable SQL-backed product store
+
+🔄 Modular & Extensible – Clean, componentized Python code structure
+
+🧪 Ready for Experimentation – Plug in different NLP models or similarity metrics
