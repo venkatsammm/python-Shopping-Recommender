@@ -47,6 +47,8 @@ source venv/bin/activate  # or venv\Scripts\activate (on Windows)
 # Install required libraries
 pip install -r requirements.txt
 
+---
+
 ## 📁 Project Structure
 
 📦 product-recommender-system
@@ -58,6 +60,7 @@ pip install -r requirements.txt
 ├── requirements.txt     # Python dependencies
 └── README.md            # You're here!
 
+---
 
 **✅ Features**
 
