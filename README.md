@@ -1,115 +1,40 @@
-🛒 Product Recommendation System
-🔍 Overview
-This project is a Product Recommendation System that leverages NLP embeddings and cosine similarity to suggest products similar to a selected one. Built with a Streamlit web interface, it enables efficient product search, exploration, and intelligent recommendations. The backend uses SQL for storage and machine learning for recommendation logic.
+# 🛍️ Intelligent Product Recommender System
 
-🧠 Tech Stack
-Component	Technology
-Web Interface	Streamlit
-NLP	Sentence Transformers
-Machine Learning	Cosine Similarity
-Database	SQLite (or any SQL-compatible)
-Language	Python 3.8+
-✨ Features
-🔎 Product search and category browsing
+## 📌 Project Overview
 
-🤖 Similarity-based product recommendations
+The **Intelligent Product Recommender System** analyzes product descriptions using **NLP embeddings** and compares them using **Cosine Similarity** to suggest semantically similar items.
 
-💬 Text embedding using NLP
+It uses:
 
-📊 Filtering and sorting options
+- 🧠 **NLP-based Embeddings** – to understand descriptions beyond simple keyword matching  
+- 🧮 **Cosine Similarity** – to compute similarity between products  
+- 🗄️ **SQL** – to store and fetch product data  
+- 🖼️ **Streamlit** – to display everything in a sleek, interactive UI
 
-🖥️ Simple and interactive UI with Streamlit
+---
 
-🔁 Project Workflow
-1. 📥 Data Collection & Storage
-Load product data into an SQL database
+## 🚀 Tech Stack
 
-Store details like name, description, category, price, etc.
+| Layer             | Framework / Tool            |
+|------------------|-----------------------------|
+| Web UI           | Streamlit                   |
+| ML Similarity    | Cosine Similarity           |
+| NLP              | Sentence Transformers       |
+| Database         | SQLite / PostgreSQL         |
+| Language         | Python                      |
 
-2. 🧹 Text Processing
-Clean and preprocess product descriptions
+---
 
-Generate text embeddings using Sentence Transformers
+## 🛠️ Installation & Setup
 
-3. 📈 Similarity Calculation
-Compute cosine similarity between product embeddings
-
-Rank and recommend top similar products
-
-4. 🌐 Web Interface
-Display products and recommendations
-
-Allow filtering and sorting
-
-Select a product to see similar items
-
-🚀 Installation
-bash
-Copy
-Edit
+## bash
 # Clone the repository
-git clone https://github.com/yourusername/product-recommendation-system.git
-cd product-recommendation-system
+git clone https://github.com/yourusername/product-recommender-system.git
+cd product-recommender-system
 
-# Create and activate the virtual environment
+# Create and activate a virtual environment
 python -m venv venv
-source venv/bin/activate  # For Windows: venv\Scripts\activate
+source venv/bin/activate       # On Windows: venv\Scripts\activate
 
-# Install the required dependencies
+# Install required packages
 pip install -r requirements.txt
-▶️ Usage
-1. Set up the database
-bash
-Copy
-Edit
-python setup_database.py
-2. Generate embeddings
-bash
-Copy
-Edit
-python generate_embeddings.py
-3. Launch the app
-bash
-Copy
-Edit
-streamlit run app.py
-Visit http://localhost:8501 in your browser.
-
-📁 Project Structure
-perl
-Copy
-Edit
-product-recommendation-system/
-│
-├── app.py                    # Streamlit web app
-├── setup_database.py         # DB schema and sample data setup
-├── generate_embeddings.py    # NLP preprocessing and embedding generation
-├── recommender.py            # Cosine similarity & recommendation logic
-├── database.py               # SQL queries and connection handling
-├── requirements.txt          # Python dependencies
-│
-├── data/                     # Sample data / database file
-└── docs/                     # Documentation and reference files
-📦 Requirements
-Python 3.8+
-
-Streamlit
-
-NumPy
-
-Pandas
-
-Scikit-learn
-
-SQLite
-
-Sentence Transformers
-
-📌 Future Enhancements
-🔄 Real-time user interaction feedback loop
-
-🧠 Personalization using user behavior or ratings
-
-📊 Advanced filters (brand, price range, etc.)
-
-🌍 Deployment to the cloud (e.g., Heroku, Streamlit Cloud)
