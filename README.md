@@ -27,7 +27,7 @@ It uses:
 
 ## 🛠️ Installation & Setup
 
-## bash
+``` bash
  Clone the repository
 git clone https://github.com/yourusername/product-recommender-system.git
 cd product-recommender-system
@@ -40,7 +40,7 @@ Install required packages
 pip install -r requirements.txt
 
 
-✅ # Features
+```✅ Features
 
 🔍 Semantic Recommendations – Understands product meaning, not just keyword matches
 
