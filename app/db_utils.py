@@ -24,3 +24,37 @@ def fetch_product_by_name(name):
         result = conn.execute(text("SELECT * FROM products WHERE name = :name"), {"name": name})
         row = result.fetchone()
         return dict(row._mapping) if row else None
+def create_user(username, email, password_hash, gender):
+    with engine.begin() as conn:
+        conn.execute(text("""
+            INSERT INTO users (username, email, password_hash, gender)
+            VALUES (:username, :email, :password_hash, :gender)
+        """), {
+            "username": username,
+            "email": email,
+            "password_hash": password_hash,
+            "gender": gender
+        })
+
+def get_user_by_email(email):
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM users WHERE email = :email"), {"email": email})
+        row = result.fetchone()
+        return dict(row._mapping) if row else None
+def get_user_by_username(username):
+    with engine.connect() as conn:
+        result = conn.execute(text("""
+            SELECT * FROM users WHERE username = :username
+        """), {"username": username})
+        return result.fetchone()
+def fetch_product_category(product_id):
+    """
+    Alternative implementation if categories are stored directly in the products table.
+    """
+    with engine.connect() as conn:
+        result = conn.execute(
+            text("SELECT category FROM products WHERE id = :product_id"),
+            {"product_id": product_id}
+        )
+        row = result.fetchone()
+        return row[0] if row else None

@@ -1,21 +1,32 @@
-# File: create_db.py
-
 import requests
 from sqlalchemy import create_engine, text
+import bcrypt
 
 # PostgreSQL connection string
 POSTGRES_URL = "postgresql://neondb_owner:npg_6OSdFr7WoiwN@ep-still-violet-a53t7hro-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
 engine = create_engine(POSTGRES_URL)
 
-# Create table query
-create_table_sql = """
+# Create products table
+create_products_table_sql = """
 CREATE TABLE IF NOT EXISTS products (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     category TEXT,
     price REAL,
-    image_url TEXT
+    image_url TEXT,
+     
+);
+"""
+
+# Create users table
+create_users_table_sql = """
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username TEXT UNIQUE NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    gender TEXT CHECK (gender IN ('male', 'female', 'other'))
 );
 """
 
@@ -23,7 +34,7 @@ CREATE TABLE IF NOT EXISTS products (
 response = requests.get("https://dummyjson.com/products?limit=50")
 data = response.json()
 
-# Handle both possible formats (dict or list)
+# Handle response structure
 if isinstance(data, dict) and "products" in data:
     products = data["products"]
 elif isinstance(data, list):
@@ -32,9 +43,13 @@ else:
     print("⚠️ Unexpected API response structure.")
     products = []
 
-# Build SQL insert query
+# Create tables and insert data
 with engine.begin() as conn:
-    conn.execute(text(create_table_sql))
+    # Create tables
+    conn.execute(text(create_products_table_sql))
+    conn.execute(text(create_users_table_sql))
+
+    # Insert products
     for product in products:
         insert_sql = text("""
             INSERT INTO products (name, description, category, price, image_url)
@@ -49,4 +64,4 @@ with engine.begin() as conn:
             "image_url": product["thumbnail"]
         })
 
-print("✅ PostgreSQL table created and real product data inserted.")
+print("✅ Tables created and product data inserted.")
