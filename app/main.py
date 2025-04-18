@@ -1,7 +1,7 @@
 import streamlit as st
 import bcrypt
 from recommender import get_recommendations
-from db_utils import fetch_all_products, create_user, get_user_by_email
+from db_utils import fetch_all_products, create_user, get_user_by_email,get_user_by_username
 
 # ------------- Session State -------------
 if 'authenticated' not in st.session_state:
@@ -148,7 +148,7 @@ def signup_page():
             st.markdown('<p><span class="field-icon">⚧️</span> Gender</p>', unsafe_allow_html=True)
             gender = st.selectbox(
                 "Gender",
-                ["Select your gender", "Male", "Female", "Non-binary", "Prefer not to say"],
+                ["Select your gender", "Male", "Female"],
                 label_visibility="collapsed"
             )
 
@@ -191,7 +191,7 @@ def signup_page():
 
         # Footer with login redirection
         st.markdown('<div class="auth-footer">', unsafe_allow_html=True)
-        st.markdown('Already have an account? <span class="toggle-link" onclick="document.dispatchEvent(new CustomEvent(\'streamlit:componentReRender\'))">Sign In</span>', unsafe_allow_html=True)
+
         
         if st.button("Go to Login", key="goto_login"):
             st.session_state.page = "login"
@@ -224,12 +224,7 @@ def login_page():
         st.markdown('<p><span class="field-icon">🔒</span> Password</p>', unsafe_allow_html=True)
         password = st.text_input("Password", type="password", label_visibility="collapsed")
         
-        col1, col2 = st.columns([1, 1])
-        with col1:
-            remember = st.checkbox("Remember me")
-        with col2:
-            st.markdown('<div style="text-align: right;"><a href="#" style="color: #2575fc; text-decoration: none;">Forgot password?</a></div>', unsafe_allow_html=True)
-        
+      
         # Submit button
         if st.button("Sign In"):
             user = get_user_by_email(email)
@@ -243,7 +238,6 @@ def login_page():
         
         # Footer with toggle link
         st.markdown('<div class="auth-footer">', unsafe_allow_html=True)
-        st.markdown('Don\'t have an account? <span class="toggle-link" onclick="document.dispatchEvent(new CustomEvent(\'streamlit:componentReRender\'))">Sign Up</span>', unsafe_allow_html=True)
         if st.button("Go to Signup", key="goto_signup"):
             st.session_state.page = "signup"
             st.rerun()
